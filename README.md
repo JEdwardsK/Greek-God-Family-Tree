@@ -1,142 +1,229 @@
-# The Pantheon ReadMe
-### Team members
-*  [Sami Hakim](https://github.com/hamisakim) 
-*  [Jesse Edwards](https://github.com/JedwardsK) 
+# 🔱 Pantheon - Greek Myth Family Trees Database 🔱
+> SEI Project 2
 
-# Deployed app here    [The Pantheon](https://thepantheon.netlify.app/) 
-# Project Overview - 48 hours
-This app provides a family tree of your selected Greek God, King or Hero. Choose from over 200 Entries and view lineages spanning three generations
-<img width="1423" alt="Screenshot 2021-05-07 at 14 19 11" src="https://user-images.githubusercontent.com/76621344/117462809-ec2ee580-af46-11eb-87d2-46876b4a199e.png">
+This project was a 48 hour pair coding assignment with the objective of consuming an external API and displaying the data in a React App.
 
+My partner for the project was Sami Hakim ([github](https://github.com/hamisakim), [linkedIn](https://github.com/Hamisakim))
 
-# Initialisation
-1. `yarn`
-2. `yarn start`
+Click the image below for the deployed app
 
-# Project brief
-Build a front-end application consuming an external API.
+[<img width="1423" alt="Screenshot 2021-05-07 at 14 19 11" src="https://user-images.githubusercontent.com/76621344/117462809-ec2ee580-af46-11eb-87d2-46876b4a199e.png">](https://thepantheon.netlify.app/)
 
-# Approach Taken
-We began by brainstorming ideas for cool projects to do and eventually we found this [greekmyths · Apiary](https://greekmythology1.docs.apiary.io/) However it was not working but we were set on the idea around Greek Myhtology.  We found another partly completed API which we figured we’d be able to use and get the most out of, given the short time frame [GitHub - newsh/GreekAPI: Web API for Greek Mythology data](https://github.com/newsh/GreekAPI)
-After finding this we began working! 
+## Installing / Getting started
 
-We worked on our routes, and getting the right data visualising this through Insomnia.
-# My highlights
-I worked on the list page: 
-<img width="1421" alt="Screenshot 2021-05-07 at 14 38 33" src="https://user-images.githubusercontent.com/76621344/117462822-efc26c80-af46-11eb-8d8a-f66c4027641a.png">
+The initial setup for the front end is handled by `create-react-app` using the GA London template
+```shell
+$ yarn create react-app client --template cra-template-ga-ldn
+```
+Packages used
+- axios
+- bulma
+- react-router-dom
 
+When forking/cloning the repo, a yarn and yarn start should start up the app
 
-For the filter - This was a separate component. 
-That received the list of Gods from the API as props, and the user input to actively filter through the field sets dropdown data!
-`<GodFilter godListData={godListData} userInput={userInput} onChange={handleFilter} />`
+```shell
+$ yarn; yarn start
+```
 
-<img width="1440" alt="Screenshot 2021-05-07 at 14 39 18" src="https://user-images.githubusercontent.com/76621344/117462839-f3ee8a00-af46-11eb-8d0a-50a7d0031207.png">
+## Development
 
-``` javascript
-import React from 'react'
-const GodFilter = (props) => {
-  const handleFilter = (event) => {
-    props.onChange(event.target.value.toLowerCase())
-  }
-  const clearField = () =>{
-    document.getElementById('input-field').value = ''
-  }
-  const gods = props.godListData.persons
-  return (
-    <div className='filter-container'>
-      <fieldset>
-        <legend> Search here </legend>
-        <label>Choose a God from the drop down or search by name </label>
-        <input id='input-field'  list='god-list-dropdown' onChange={handleFilter} />
-        <datalist id='god-list-dropdown'>
-          {gods.map((god)=>{
-            return <option key={god.personID} value={god.name} /> 
-          })}             
-        </datalist>
-        <button id='clear-btn' onClick={clearField}>Clear Field </button>
-      </fieldset>
-    </div>
-  )
+### Idea Stage
+
+We started by looking for a free API to work with. We found that there tends to be an API for everything you can think of. We moved from a space theme to something around greek mythology. Initially we found [greekmyths](https://greekmythology1.docs.apiary.io/), but we couldn't get it to work. We settled on [GreekAPI](https://github.com/newsh/GreekAPI), which had less information per character, but more characters to select.
+
+We first tested our routes through Insomnia to visualise the request responses
+
+### Dev Stage
+
+Rather than having to deal with merge conflicts and duplicating work, we pair coded on Sami's repo through a combination of LiveShare and screen sharing on Zoom.
+
+#### Highlights
+
+I used this project as an opportunity to practice creating images using pure CSS, implementing this in the HomePage component.
+
+All of the elements were wrapped in a container and sized through absolute positioning and percentages, in an attempt to make it scalable. a snippet below shows the HTML for the sword and shield
+
+```HTML
+<div className="sword-and-shield">
+   <div className="sword-blade"></div>
+   <div className="sword-hilt"></div>
+   <div className="sword-guard"></div>
+   <div className="sword-shield"></div>
+   <div className="sword-end"></div>
+ </div>
+</div>
+```
+and the styling
+```scss
+$bronze: #d27a25;
+$steel: grey;
+$shield: rgb(110, 67, 14);
+
+.sword-and-shield {
+ position: absolute;
+ height: 65%;
+ width: 32.5%;
+ // border: 2px solid red;
+ top: 45%;
+ left: 45%;
+ z-index: 10;
+}
+.sword-blade {
+ position: absolute;
+ height: 60%;
+ top: 30%;
+ width: 10%;
+ left: 45%;
+ background-color: $steel;
+}
+.sword-hilt {
+ position: absolute;
+ height: 10%;
+ width: 6%;
+ background: repeating-linear-gradient(-45deg, #920027, #920027 5px, black 5px, black 10px);
+ top: 19%;
+ left: 47%;
+}
+.sword-guard {
+ position: absolute;
+ height: 3%;
+ width: 25%;
+ background-color: $bronze;
+ left: 38%;
+ top: 29%;
+ border: 3px outset $shield;
 }
 
-export default GodFilter 
+.sword-end {
+ position: absolute;
+ background-color: $bronze;
+ border-radius: 50%;
+ top: 14%;
+ height: 8%;
+ width: 10%;
+ left: 43%;
+ border: 7px inset $shield;
+}
+.sword-shield {
+ position: absolute;
+ background: radial-gradient(circle, transparent, $shield),
+   repeating-conic-gradient(from 0deg, #ff8a00 0deg 15deg, black 15deg 30deg);
+ border: 10px outset $bronze;
+ border-radius: 50%;
+ top: 50%;
+ height: 45%;
+ width: 45%;
+ left: 35%;
+}
+```
+I wanted to have some vines to wrap the pillar or frame the page, but couldn't work out how to implement it. Additionally, I had to cheat with the whitespace in between the handle and the vase stem, which varies between passable and glaringly obvious.
+
+## Learning Outcomes
+
+### Wins/ Challenges
+
+This was a great opportunity to experience pair coding, using a combination of LiveShare in VSCode, Slack and Zoom aided in this, as well as gaining more familiarity with these technologies.
+
+It was beneficial to work through problems together and be able to split tasks up to work independently.
+
+Another win was gaining more confidence with styling and React Hooks.
+
+With regards to challenges, we came across a problem with data structure in the API. For some reason the husband or wife key was an array
+```json
+"wife": [
+ {
+   "personID": 65,
+   "name": "Aphrodite"
+ }
+],
+```
+Perhaps to account for if someone had multiple spouses? Jocasta has two Husbands, her first, Laius, and her second, Oedipus. However her data only accounts for her most recent, not her former...
+
+We also had to use conditional rendering depending on whether the person in particular had someone in the specified relationship.
+
+### Future Improvements
+#### Added Information for Characters
+
+The API we used was limited in the data provided, ideally we would have had things like bio pages and images etc. However due to the number of characters (circa 200), it would be impractical to manually seed all data for each one, especially given the time constraint.
+
+We considered linking to a wikipedia page or another wiki possibly through an inline frame element that would appear on hover, however coming up with a method to do so was problematic due to the varied naming conventions of mythological characters.
+
+Linking could work for example like
+```javascript
+<Link to={`https://en.wikipedia.org/wiki/${godData.name}`}>{godData.name}</Link>
 ```
 
-
-
-# Wins and challenges 
-### Challenges! 
-We ran into a few! 
-* Styling the family tree to work with complicated relationships. 
-* Due to the way the data was nested the spousal status of the God also caused issues! We had to write two functions to render the correct	name of spouse and to render if it was a husband or wife! 
-
-``` javascript
-{
-  "personID": 66,
-  "name": "Ares",
-  "father": {
-    "personID": 1,
-    "name": "Zeus"
-  },
-  "mother": {
-    "personID": 67,
-    "name": "Hera"
-  },
-  "wife": [
-    {
-      "personID": 65,
-      "name": "Aphrodite"
-    }
-  ],
-...}
-
+#### Fixing Random
+We have a Random button on the nav bar that links to a random family tree. for testing we simply put in Uranus for presentation
+```javascript
+<div className='navbar-start' onClick={getRandomNumber()}>
+ <Link to='/family-tree/Uranus'
+   className='navbar-item'>
+     Random
+ </Link>
+</div>
 ```
 
-``` javascript
- const {wife, husband } = godData
-	
- const haveWife = () => { 
-    let spouseName = ''
-    if (!husband && !wife){
-      spouseName = ''
-     // html = null
-    } else if (!husband){
-      spouseName = wife[0].name
-    } else if (!wife) {
-      spouseName = husband[0].name
-    }
-  return spouseName 
-      }
-  const spouseTag = () => { 
-   let gender = ''
-    if (!husband && !wife){
-      gender = ''
-    } else if (!husband){
-      gender = 'wife'
-    } else if (!wife) {
-        gender = 'husband'
-    }
-  return gender
-    }
+We actually need a list of all of the characters in the database in an array to select one from random. We prepared a function to handle the index number.
+
+```javascript
+export const getRandomNumber = () => {
+ const randomIndex = Math.floor(Math.random() * 220)
+ console.log(randomIndex)
+ return randomIndex
+}
 ```
-### Wins
-* Getting a cool working app deployed with the unsurprisingly scarce amount of mythological Greek APIs out there ! 
-* Getting a working family-tree styling wise! 
+We would then have to make a request to the API and map through to get the array. The  `getRandomNumber()` function would be rewritten to replace 220 with `namesArray.length`. A defined variable could then be placed in the link. It would probably involve setting some variables to state, and using the `useHistory()` hook, if the `<Link>` doesn't work.
+```javascript
+//? either Link or useHistory()
 
-# Key Learnings 
-This was the first real pair-coded project. We had to use zoom and slack to communicate. We used VSCode and LiveShare to work together
+const [randomName, setRandomName] = useState('')
 
-Great to work with and solve problems together, but also a lesson on how to work separately on the same project. 
+// const history = useHistory()
+const getRandomName = () => {
+ const nameFromArray = namesArray[getRandomNumber()]
+ setRandomName(nameFromArray)
+ // history.push(`/family-tree/${randomName}`)
+}
 
-# Walkthrough 
-Users can go to the All Gods Section from the navbar
 
+return (
+ <div className='navbar-start' onClick={getRandomNumber()}>
+<Link to={`/family-tree/${randomName}`}
+ className='navbar-item'>
+   Random
+</Link>
+</div>
+)
+```
+
+# Walkthrough
+From the navbar, users can navigate to view all gods.
+
+<figure>
 <img width="1440" alt="Screenshot 2021-05-07 at 15 17 32" src="https://user-images.githubusercontent.com/76621344/117463233-59427b00-af47-11eb-92ca-a93ef305deb1.png">
-From here they can either search or choose from the drop down, or browse them all!
+<figcaption styles="color: #00ff00">Homepage</figcaption>
+</figure>
+From here they can scroll to search, or optionally use the search function.
 
-<img width="1440" alt="Screenshot 2021-05-07 at 15 18 14" src="https://user-images.githubusercontent.com/76621344/117463344-7414ef80-af47-11eb-8ae8-43584b286eaa.png">
+<figure>
+ <img width="1440" alt="Screenshot 2021-05-07 at 15 18 14" src="https://user-images.githubusercontent.com/76621344/117463344-7414ef80-af47-11eb-8ae8-43584b286eaa.png">
+ <figcaption>Gods Index Page</figcaption>
+</figure>
 
+After selecting they will be taken to the Family Tree.Oedipus is an amusing example as his father is not the father of his siblings, despite how the tree presents the data.
+<figure>
+ <img width="1440" alt="Family tree for Oedipus" src="./src/assets/images/oedipus.png">
+ <figcaption>Gods Show Page</figcaption>
+</figure>
+From here users can click any character name on the tree to be taken to that family member’s tree.
+<figure>
+ <img width="1440" alt="Family tree for Oedipus' mother-wife, Jocasta" src="./src/assets/images/jocasta.png">
+ <figcaption>Gods Show Page Family tree for Oedipus' mother-wife, Jocasta</figcaption>
+</figure>
 
-
-After selecting they will be taken to the Family Tree. From here users can choose any family members to be taken to their family tree
-<img width="1440" alt="Screenshot 2021-05-07 at 15 19 58" src="https://user-images.githubusercontent.com/76621344/117463544-b4746d80-af47-11eb-88fc-f0c8b2466b0f.png">
+Clicking on the navbar elements return either to
+- the Homepage (🔱)
+- the Index (All Gods)
+- Uranus (Random)
