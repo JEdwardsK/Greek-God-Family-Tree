@@ -1,15 +1,15 @@
-# 🔱 Pantheon - Greek Myth Family Trees Database 🔱
+# 🔱 Pantheon - Greek Mythology Family Tree Database 🔱
 > SEI Project 2
 
 This project was a 48 hour pair coding assignment with the objective of consuming an external API and displaying the data in a React App.
 
-My partner for the project was Sami Hakim ([github](https://github.com/hamisakim), [linkedIn](https://github.com/Hamisakim))
+My partner for the project was Sami Hakim  [<img src="./src/assets/images/github.png" width="25">](https://github.com/Hamisakim) [<img src="./src/assets/images/linkedin.png" width="30">](https://www.linkedin.com/in/samihakim/)
 
-Click the image below for the deployed app
+Click the image below to navigate to the deployed app
 
 [<img width="1423" alt="Screenshot 2021-05-07 at 14 19 11" src="https://user-images.githubusercontent.com/76621344/117462809-ec2ee580-af46-11eb-87d2-46876b4a199e.png">](https://thepantheon.netlify.app/)
 
-## Installing / Getting started
+## Installing / Getting Started
 
 The initial setup for the front end is handled by `create-react-app` using the GA London template
 ```shell
@@ -209,18 +209,18 @@ From here they can scroll to search, or optionally use the search function.
 
 <figure>
  <img width="1440" alt="Screenshot 2021-05-07 at 15 18 14" src="https://user-images.githubusercontent.com/76621344/117463344-7414ef80-af47-11eb-8ae8-43584b286eaa.png">
- <figcaption>Gods Index Page</figcaption>
+ <figcaption><small>Gods Index Page</small></figcaption>
 </figure>
 
-After selecting they will be taken to the Family Tree.Oedipus is an amusing example as his father is not the father of his siblings, despite how the tree presents the data.
+After selecting they will be taken to the Family Tree. Oedipus is an amusing example as his father is not the father of his siblings, despite how the tree presents the data.
 <figure>
  <img width="1440" alt="Family tree for Oedipus" src="./src/assets/images/oedipus.png">
- <figcaption>Gods Show Page</figcaption>
+ <figcaption><small>Gods Show Page</small></figcaption>
 </figure>
 From here users can click any character name on the tree to be taken to that family member’s tree.
 <figure>
  <img width="1440" alt="Family tree for Oedipus' mother-wife, Jocasta" src="./src/assets/images/jocasta.png">
- <figcaption>Gods Show Page Family tree for Oedipus' mother-wife, Jocasta</figcaption>
+ <figcaption><small>Gods Show Page Family tree for Oedipus' mother-wife, Jocasta</small></figcaption>
 </figure>
 
 Clicking on the navbar elements return either to
