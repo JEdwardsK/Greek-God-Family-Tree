@@ -1,4 +1,4 @@
-# 🔱 Pantheon - Greek Mythology Family Tree Database 🔱
+# 🔱 Pantheon - A Greek Mythology Family Tree Database 🔱
 > SEI Project 2
 
 This project was a 48 hour pair coding assignment with the objective of consuming an external API and displaying the data in a React App.
